@@ -6,6 +6,7 @@ import TextField from "../components/Textfield";
 import { ComponentsContext } from "../contexts/ComponentsContext";
 import Resources from "../Resources";
 import axios from "axios";
+import AppConfiguration from "../AppConfiguration";
 
 const Settings = () => {
    const {
@@ -55,7 +56,7 @@ const Settings = () => {
 
    const handleUpdateCategory = async () => {
       await axios
-         .put(`http://localhost:2022/api/updateData`, {
+         .put(`${AppConfiguration.url()}/api/updateData`, {
             table: "categories",
             values: {
                category: previewCategory,
@@ -85,7 +86,7 @@ const Settings = () => {
 
    const handleDeleteCategory = () => {
       axios
-         .put(`http://localhost:2022/api/updateData`, {
+         .put(`${AppConfiguration.url()}/api/updateData`, {
             table: "categories",
             values: {
                status: 0,
@@ -439,7 +440,7 @@ const Settings = () => {
                   </button>
                </div>
                <div className="flex flex-col gap-2">
-                  {activeBudget.budgetID != 0 ? (
+                  {activeBudget.budgetID !== 0 ? (
                      <div
                         className="flex items-center justify-between w-full p-2 rounded-lg bg-[#03305f25] neumorphism active-inset"
                         onClick={handlePreviewBudget}

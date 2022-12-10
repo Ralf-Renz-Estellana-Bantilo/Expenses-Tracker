@@ -1,6 +1,7 @@
 import { createContext, useEffect } from "react";
 import React, { useState } from "react";
 import axios from "axios";
+import AppConfiguration from "../AppConfiguration";
 
 export const ComponentsContext = createContext();
 
@@ -72,7 +73,7 @@ function ComponentsContextProvider(props) {
 
    const fetchInsertData = async (payload) => {
       await axios
-         .post("http://localhost:2022/api/insertData", payload)
+         .post(`${AppConfiguration.url()}/api/insertData`, payload)
          .then((response) => {
             // console.log(response.data);
          })
@@ -97,7 +98,7 @@ function ComponentsContextProvider(props) {
          },
       };
       await axios
-         .post("http://localhost:2022/api/masterselect", payload)
+         .post(`${AppConfiguration.url()}/api/masterselect`, payload)
          .then((response) => {
             setTodaysExpenses(response.data);
          })
@@ -114,7 +115,7 @@ function ComponentsContextProvider(props) {
          },
       };
       await axios
-         .post("http://localhost:2022/api/masterselect", payload)
+         .post(`${AppConfiguration.url()}/api/masterselect`, payload)
          .then((response) => {
             setBudgetList(response.data);
             if (response.data.length > 0) {
@@ -149,7 +150,7 @@ function ComponentsContextProvider(props) {
       };
 
       await axios
-         .post("http://localhost:2022/api/masterselect", payload)
+         .post(`${AppConfiguration.url()}/api/masterselect`, payload)
          .then((response) => {
             setPreviousExpenses(response.data);
             const { amount } = activeBudget;
@@ -168,7 +169,7 @@ function ComponentsContextProvider(props) {
 
       await axios
          .post(
-            "http://localhost:2022/api/masterselect",
+            `${AppConfiguration.url()}/api/masterselect`,
             previousExpensesPayload
          )
          .then((response) => {
@@ -201,7 +202,7 @@ function ComponentsContextProvider(props) {
          tables: ["categories", "months"],
       };
       await axios
-         .post("http://localhost:2022/api/masterdata", payload)
+         .post(`${AppConfiguration.url()}/api/masterdata`, payload)
          .then((response) => {
             const { categories, months } = response.data;
             setCategoryList(categories);
@@ -250,7 +251,7 @@ function ComponentsContextProvider(props) {
          },
       };
       await axios
-         .post("http://localhost:2022/api/insertData", payload)
+         .post(`${AppConfiguration.url()}/api/insertData`, payload)
          .then((response) => {
             const { insertId } = response.data;
             const expense = { expenseID: insertId, ...newExpense };
@@ -292,7 +293,7 @@ function ComponentsContextProvider(props) {
       };
 
       await axios
-         .post("http://localhost:2022/api/insertData", budgetPayload)
+         .post(`${AppConfiguration.url()}/api/insertData`, budgetPayload)
          .then((response) => {
             const { insertId } = response.data;
 
@@ -310,7 +311,7 @@ function ComponentsContextProvider(props) {
          });
 
       await axios
-         .post("http://localhost:2022/api/insertData", savingPayload)
+         .post(`${AppConfiguration.url()}/api/insertData`, savingPayload)
          .then((response) => {
             console.log({ response });
          })

@@ -13,6 +13,7 @@ import { SelectPicker } from "rsuite";
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import AppConfiguration from "../AppConfiguration";
 
 const LIST_LIMIT = 4;
 
@@ -144,7 +145,7 @@ const Home = () => {
          },
       };
       await axios
-         .post("http://localhost:2022/api/masterselect", payload)
+         .post(`${AppConfiguration.url()}/api/masterselect`, payload)
          .then((response) => {
             const { amount } = activeBudget;
             let allExpensesTotal = 0;
@@ -181,7 +182,7 @@ const Home = () => {
    const updateExpense = async () => {
       const { option, categoryID } = previewSelectedCategory;
       axios
-         .put(`http://localhost:2022/api/updateData`, {
+         .put(`${AppConfiguration.url()}/api/updateData`, {
             table: "expenses",
             values: {
                categoryID: categoryID,
@@ -218,7 +219,7 @@ const Home = () => {
 
    const deleteExpense = () => {
       axios
-         .put(`http://localhost:2022/api/updateData`, {
+         .put(`${AppConfiguration.url()}/api/updateData`, {
             table: "expenses",
             values: {
                status: 0,
@@ -258,7 +259,7 @@ const Home = () => {
          },
       };
       await axios
-         .post("http://localhost:2022/api/masterselect", payload)
+         .post(`${AppConfiguration.url()}/api/masterselect`, payload)
          .then((response) => {
             setPreviousExpensesList(response.data);
 

@@ -15,6 +15,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import AppConfiguration from "./AppConfiguration";
 
 const App = () => {
    const [selectedIndex, setSelectedIndex] = useState(0);
@@ -24,7 +25,7 @@ const App = () => {
          tables: ["department", "branch", "position"],
       };
       await axios
-         .post("http://localhost:2022/api/masterdata", payload)
+         .post(`${AppConfiguration.url()}/api/masterdata`, payload)
          .then((response) => {
             console.log(response.data);
          })
@@ -46,7 +47,7 @@ const App = () => {
          },
       };
       await axios
-         .post("http://localhost:2022/api/masterselect", config)
+         .post(`${AppConfiguration.url()}/api/masterselect`, config)
          .then((response) => {
             console.log(response.data);
          })
@@ -65,7 +66,7 @@ const App = () => {
          },
       };
       await axios
-         .post("http://localhost:2022/api/insertData", payload)
+         .post(`${AppConfiguration.url()}/api/insertData`, payload)
          .then((response) => {
             console.log(response.data);
          })
@@ -94,7 +95,7 @@ const App = () => {
          ],
       };
       await axios
-         .post("http://localhost:2022/api/bulkInsert", payload)
+         .post(`${AppConfiguration.url()}/api/bulkInsert`, payload)
          .then((response) => {
             console.log(response.data);
          })
