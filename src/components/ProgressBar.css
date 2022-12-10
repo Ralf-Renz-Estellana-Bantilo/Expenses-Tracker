@@ -1,0 +1,27 @@
+.progress-bar {
+   position: relative;
+   display: flex;
+   align-items: center;
+   width: 100%;
+   padding: 2px;
+   height: 26px;
+   border-radius: 1.5em;
+   border: 4px solid #ececf4;
+   /* box-shadow: 2px 2px 4px #9b9b9b, -2px -2px 2px #ffffff,
+      inset 2px 2px 4px #9b9b9b, inset -2px -2px 4px #ffffff; */
+   box-shadow: inset 5px 5px 7px #9b9b9b, inset -5px -5px 4px #ffffff;
+}
+
+.bar {
+   min-width: 1.5em;
+   border-radius: 2em;
+   height: 18px;
+   transition: width 0.3s ease-in-out;
+}
+
+.bar-label {
+   z-index: 11;
+   color: red;
+   position: absolute;
+   right: 5px;
+}
